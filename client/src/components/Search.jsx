@@ -19,7 +19,7 @@ function MovieSearch() {
 
     try {
       // Fetch data from the backend using the search query
-      const response = await axios.get(`/search?query=${query}`);
+      const response = await axios.get(`http://localhost:3000/search?query=${query}`);
 
       // Handle API response - ensure we are setting an array
       const resultsData = response.data;
@@ -87,8 +87,13 @@ function MovieSearch() {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body">
-                    <h5 className="card-title">{movie.Title} ({movie.Year})</h5>
+                    <h3 className="card-title">{movie.Title} ({movie.Year})</h3>
+                    <h5 className="card-title">Actors: {movie.Actors}</h5>
+                    <h5 className="card-title">Directors: {movie.Director}</h5>
+                    <p className="card-text"><b>Plot:</b> {movie.Plot}</p>
                     <p className="card-text">Type: {movie.Type}</p>
+                    <p className='card-text'>Rating: {movie.imdbRating}</p>
+                    {console.log(movie)}
                     <button onClick={() => handleFavourite(movie)} className="btn btn-success">
                       Favourite
                     </button>

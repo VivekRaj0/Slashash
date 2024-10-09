@@ -12,7 +12,7 @@ app.use(express.json()); // Middleware to parse JSON request bodies
 
 
 
-// MySQL connection configuration
+//MySQL connection configuration
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -38,12 +38,13 @@ app.get('/search', async (req, res) => {
         // Make a GET request to OMDB API with the search query
         const response = await axios.get(`http://www.omdbapi.com/?i=tt3896198&apikey=716a6a70`);
         res.json(response.data);  // Send the search results back to the client
+        //console.log(response.data);
     } catch (error) {
         res.status(500).json({ error: 'Error fetching data from OMDB' });  // Error handling
     }
 });
 
-// POST route to handle adding a favourite movie
+//POST route to handle adding a favourite movie
 app.post('/favourite', async (req, res) => {
     try {
       const { imdbID, Title, Year, Poster, Type } = req.body;

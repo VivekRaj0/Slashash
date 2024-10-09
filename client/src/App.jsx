@@ -1,6 +1,7 @@
 
 import './App.css'
-import Favourites from './components/Favourites'
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import Favourites from './components/Favourites'
 import MovieSearch from './components/Search'
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
   return (
     <>
       <MovieSearch/>
-      <Favourites/>
+      {/* <Favourites/> */}
     </>
   )
 }
