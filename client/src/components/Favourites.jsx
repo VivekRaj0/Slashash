@@ -57,6 +57,7 @@ function Favourites() {
                     <h5 className="card-title">{movie.Title} ({movie.Year})</h5>
                     <p className="card-text">Type: {movie.Type}</p>
                   </div>
+                  {console.log(movie)}
                 </div>
               </div>
             </div>

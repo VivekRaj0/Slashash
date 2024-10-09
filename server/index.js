@@ -74,6 +74,7 @@ app.get('/favourites', (req, res) => {
     db.query('SELECT * FROM favourites', (err, results) => {
         if (err) return res.status(500).json({ error: 'Error fetching favourites' });  // Error handling
         res.json(results);  // Send the retrieved records back to the client
+        console.log(results);
     });
 });
 
