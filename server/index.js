@@ -2,10 +2,15 @@
 import express from 'express';
 import mysql from 'mysql';
 import axios from 'axios';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 
 app.use(express.json()); // Middleware to parse JSON request bodies
+
+
+
 
 // MySQL connection configuration
 const db = mysql.createConnection({
@@ -15,6 +20,16 @@ const db = mysql.createConnection({
     database: 'moviedb'     // Change this to your database name
 });
 
+
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+    var sql = "CREATE TABLE favourites ( id INT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255), year VARCHAR(10),  type VARCHAR(50), poster VARCHAR(255), imdbID VARCHAR(50))";
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("Table created");
+    });
+  });
 // Route to search for movies or TV shows using the OMDB API
 app.get('/search', async (req, res) => {
 
@@ -22,7 +37,7 @@ app.get('/search', async (req, res) => {
     try {
         // Make a GET request to OMDB API with the search query
         const response = await axios.get(`http://www.omdbapi.com/?i=tt3896198&apikey=716a6a70`);
-        res.json(response.data.Search);  // Send the search results back to the client
+        res.json(response.data);  // Send the search results back to the client
     } catch (error) {
         res.status(500).json({ error: 'Error fetching data from OMDB' });  // Error handling
     }
