@@ -77,7 +77,7 @@ function MovieSearch() {
         {Array.isArray(results) && results.length > 0 ? (
           results.map((movie) => (
             <div className="card mb-3" key={movie.imdbID}>
-              <div className="row g-0" key={movie.imdbID}>
+              <div className="row g-0">
                 <div className="col-md-4">
                   <img
                     src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/150'}
