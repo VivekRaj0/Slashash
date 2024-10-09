@@ -39,9 +39,9 @@ function MovieSearch() {
   };
 
   // Function to handle adding a movie/TV show to favourites
-  const handleFavourite = async (movie) => {
+   async function handleFavourite (movie) {
     try {
-      await axios.post('/favourite', movie); // Send movie data to the backend
+      await axios.post('http://localhost:3000/favourite', movie); // Send movie data to the backend
       alert('Added to favourites'); // Show success message
     } catch (err) {
       alert(err,'Error saving to favourites');
