@@ -69,14 +69,23 @@ app.post("/favourite", async (req, res) => {
   }
 });
 // Route to retrieve all favourite movies/TV shows from the database
-app.get('/favourites', (req, res) => {
-    // Query the 'favourites' table and retrieve all saved records
-    db.query('SELECT * FROM favourites', (err, results) => {
-        if (err) return res.status(500).json({ error: 'Error fetching favourites' });  // Error handling
-        res.json(results);  // Send the retrieved records back to the client
-        console.log(results);
-    });
-});
+app.get('/favourite', async (req, res) => {
+    try {
+      const db = await createConnection();
+  
+      // Use await and destructure the result from the promise
+      const [results] = await db.query('SELECT * FROM favourites');
+      
+      // Send the results back as JSON
+      res.json(results);
+      console.log(results);
+  
+    } catch (error) {
+      console.error('Error fetching favourites:', error);
+      res.status(500).json({ error: 'Error fetching favourites' });
+    }
+  });
+  
 
 // Start the server on port 3000
 app.listen(3000, () => {

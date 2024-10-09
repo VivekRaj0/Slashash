@@ -11,7 +11,7 @@ function Favourites() {
     const fetchFavourites = async () => {
       setLoading(true);
       try {
-        const response = await axios.get('/favourites');
+        const response = await axios.get('http://localhost:3000/favourite');
         
         // Ensure the response is an array
         if (Array.isArray(response.data)) {
@@ -43,7 +43,8 @@ function Favourites() {
       <div className="mt-4">
         {Array.isArray(favourites) && favourites.length > 0 ? (
           favourites.map((movie) => (
-            <div className="card mb-3" key={movie.imdbID}>
+            
+            <div className="card mb-3" key={movie.ID}>
               <div className="row g-0">
                 <div className="col-md-4">
                   <img
@@ -56,8 +57,8 @@ function Favourites() {
                   <div className="card-body">
                     <h5 className="card-title">{movie.Title} ({movie.Year})</h5>
                     <p className="card-text">Type: {movie.Type}</p>
+                    {console.log(movie)}
                   </div>
-                  {console.log(movie)}
                 </div>
               </div>
             </div>
